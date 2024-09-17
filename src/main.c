@@ -61,21 +61,9 @@ bool isValid(char* s) {
     size_of_s++;
     count_ptr++;
   }
-  if(2 > size_of_s) { 
-    (void) printf("%s] %s) %d- failed 2 > size_of_s: %d\n", __FILE__, __FUNCTION__, __LINE__, size_of_s);
-    return false; }
-  if(0 != (size_of_s % 2)) { 
-    (void) printf("%s] %s) %d- failed size_of_s mod 2: %d\n", __FILE__, __FUNCTION__, __LINE__, size_of_s);
-    return false; }
-  if( (')' == s[0]) + (']' == s[0]) + ('}' == s[0]) != 0) {
-    (void) printf("%s] %s) %d- s[0]: %c\n", __FILE__, __FUNCTION__, __LINE__, s[0]);
-    (void) printf("%s] %s) %d- failed starting with end parans: %d\n", __FILE__, __FUNCTION__, __LINE__,  (')' != s[1]) + (']' != s[1]) + ('}' != s[1]));
-    return false; }
-  if( ('(' == s[size_of_s]) + ('[' == s[size_of_s]) + ('{' == s[size_of_s]) != 0) {
+  if( (2 > size_of_s) || (0 != (size_of_s % 2)) || ( (')' == s[0]) + (']' == s[0]) + ('}' == s[0]) != 0) || ( ('(' == s[size_of_s]) + ('[' == s[size_of_s]) + ('{' == s[size_of_s]) != 0) ) {
     (void) printf("%s] %s) %d- ending s[size_of_s]: %c\n", __FILE__, __FUNCTION__, __LINE__, s[size_of_s]);
-    (void) printf("%s] %s) %d- failed ending with start parans: %d\n", __FILE__, __FUNCTION__, __LINE__, ('(' != s[size_of_s]) + ('[' != s[size_of_s]) + ('{' != s[size_of_s]) );
-    return false; }
-
+    return false; } else {
   int token = -1;
   stack* parans_stack = initStack(token);
   for(uint index = 0; index < size_of_s; index++) {
@@ -125,7 +113,8 @@ bool isValid(char* s) {
     }
   }
   if(-1 != parans_stack->top->element) { return false; }
-  int error = deleteStack(parans_stack);
-
+  //int error = 
+  (void) deleteStack(parans_stack);
+    }
   return is_valid;
 }

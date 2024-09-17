@@ -10,7 +10,7 @@ stack_item* initStackItem(char element);
 stack* pushStack(stack* current_stack, char element);
 stack* popStack(stack* current_stack);
 stack* emptyStack(stack* current_stack);
-int_least16_t deleteStack(stack* current_stack);
+void deleteStack(stack* current_stack);
 int_least16_t printStack(stack* current_stack); 
 
 void temp(void) {
@@ -92,10 +92,10 @@ stack* emptyStack(stack* current_stack) {
   return current_stack;
 }
 
-int_least16_t deleteStack(stack* current_stack) {
+void deleteStack(stack* current_stack) {
   current_stack = emptyStack(current_stack);
   free(current_stack);
-  return 0;
+  return;
 }
 
 int_least16_t printStack(stack* current_stack) {
